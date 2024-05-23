@@ -23,7 +23,7 @@ public class Functions {
         DefaultTableModel model = (DefaultTableModel)table.getModel();
         reader.readLine(); //This is used to skip the header of the text file
         while((line = reader.readLine())!= null){
-            String[] data = line.split(" / ");
+            String[] data = line.split(" @ ");
             model.addRow(data);
         }
         reader.close();
