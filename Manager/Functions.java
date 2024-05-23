@@ -18,15 +18,17 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Functions {
     public void readTextFileToTable(String filePath, JTable table) throws IOException{
-        BufferedReader reader = new BufferedReader(new FileReader(filePath));
+        BufferedReader br = new BufferedReader(new FileReader(filePath));
+        String firstLine = br.readLine().trim();
         String line;
+        String[] columnsName = firstLine.split(",");
         DefaultTableModel model = (DefaultTableModel)table.getModel();
-        reader.readLine(); //This is used to skip the header of the text file
-        while((line = reader.readLine())!= null){
+        model.setColumnIdentifiers(columnsName);
+        while((line = br.readLine())!= null){
             String[] data = line.split(" @ ");
             model.addRow(data);
         }
-        reader.close();
+        br.close();
     }
     
     //Please dont ask me how this work, it just works
