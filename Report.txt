@@ -1,3 +1,3 @@
 ReportID , Date , AssessmentType , StudentID , Status , SupervisorID , SecondMarkerID
-R01 @ 23-05-24 @ CP1 @ TP31567 @ Pending @ TP74543 @ 
-R02 @ 20-05-24 @ Intern @ TP10020 @ Pending @ TP13513 @ TP74543
+R01 @ 23-05-24 @ CP1 @ TP31567 @ Pending @ LP74543 @ 
+R02 @ 20-05-24 @ Intern @ TP10020 @ Pending @ LP13513 @ LP74543
