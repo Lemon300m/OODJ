@@ -6,8 +6,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.io.FileNotFoundException;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.util.Scanner;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -32,7 +34,26 @@ public class Functions {
         }
         br.close();
     }
-    
+    public String[] readSingleLine(String filename, String searchID){
+        try {
+            File file = new File(filename);
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+              String line = scanner.nextLine();
+              if (line.contains(searchID)) {
+                scanner.close();
+                return line.split(" @ ", -1);
+              }
+            }
+            scanner.close();
+            return null; 
+          } catch (FileNotFoundException e) {
+            System.err.println("Error: File not found: " + filename);
+          } catch (Exception e) {
+            System.err.println("Error: Error reading file: " + filename);
+      }
+      return null;
+    }
     //Please dont ask me how this work, it just works
     //Please dont ask me how this work, it just works
     //Please dont ask me how this work, it just works
@@ -93,5 +114,16 @@ public class Functions {
     }
     public static String getFileLocation(String filename){
         return System.getProperty("user.dir") + File.separator + filename;
+    }
+    public static class UneditableTableModel extends DefaultTableModel {
+        public UneditableTableModel(Object[] columnNames, int rowCount) {
+            super(columnNames, rowCount);
+        }
+
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            // All cells are uneditable
+            return false;
+        }
     }
 }
