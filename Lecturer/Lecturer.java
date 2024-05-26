@@ -15,6 +15,7 @@ public class Lecturer extends javax.swing.JFrame {
      */
     public Lecturer() {
         initComponents();
+        tpnumTxt.setText("LP74543");
     }
 
     /**
@@ -32,6 +33,8 @@ public class Lecturer extends javax.swing.JFrame {
         viewPresentationBtn = new javax.swing.JButton();
         viewSecondMarkerBtn = new javax.swing.JButton();
         viewReportBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        tpnumTxt = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,6 +73,12 @@ public class Lecturer extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setText("TP Number:");
+
+        tpnumTxt.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        tpnumTxt.setText("tpNum");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -77,21 +86,29 @@ public class Lecturer extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(276, 276, 276)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(viewSuperviseesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(35, 35, 35)
+                        .addComponent(tpnumTxt))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(viewPresentationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(viewSecondMarkerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(viewReportBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(384, Short.MAX_VALUE))
+                    .addComponent(viewReportBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(viewSuperviseesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(271, 386, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77)
-                .addComponent(viewSuperviseesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tpnumTxt))
                 .addGap(18, 18, 18)
+                .addComponent(viewSuperviseesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
                 .addComponent(viewPresentationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(viewSecondMarkerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -120,27 +137,40 @@ public class Lecturer extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public String getTpnumTxt(String tpnum) {
+        return tpnumTxt.getText();
+    }
+    
     private void viewSuperviseesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewSuperviseesBtnActionPerformed
         // TODO add your handling code here:
-        ViewAssignedSupervisees vas = new ViewAssignedSupervisees();
+        String tpNumber = tpnumTxt.getText();
+        ViewAssignedSupervisees vas = new ViewAssignedSupervisees(tpNumber);
         vas.setVisible(true);
-        
+        this.dispose();
     }//GEN-LAST:event_viewSuperviseesBtnActionPerformed
 
     private void viewPresentationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPresentationBtnActionPerformed
         // TODO add your handling code here:
-        ViewPresentationRequest vPR = new ViewPresentationRequest();
+        String tpNumber = tpnumTxt.getText();
+        ViewPresentationRequest vPR = new ViewPresentationRequest(tpNumber);
         vPR.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_viewPresentationBtnActionPerformed
 
     private void viewSecondMarkerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewSecondMarkerBtnActionPerformed
         // TODO add your handling code here:
+        String tpNumber = tpnumTxt.getText();
+        GiveRemarks GR = new GiveRemarks(tpNumber);
+        GR.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_viewSecondMarkerBtnActionPerformed
 
     private void viewReportBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewReportBtnActionPerformed
         // TODO add your handling code here:
-        ViewReport vR = new ViewReport();
+        String tpNumber = tpnumTxt.getText();
+        ViewReport vR = new ViewReport(tpNumber);
         vR.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_viewReportBtnActionPerformed
 
     /**
@@ -170,7 +200,8 @@ public class Lecturer extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
+            
+        Lecturer lecturer = new Lecturer();
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -182,7 +213,9 @@ public class Lecturer extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel tpnumTxt;
     private javax.swing.JButton viewPresentationBtn;
     private javax.swing.JButton viewReportBtn;
     private javax.swing.JButton viewSecondMarkerBtn;

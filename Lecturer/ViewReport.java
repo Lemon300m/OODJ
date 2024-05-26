@@ -17,9 +17,13 @@ public class ViewReport extends javax.swing.JFrame {
     /**
      * Creates new form ViewReport
      */
-    FunctionTest fnc = new FunctionTest();
-    public ViewReport() {
+    private String tpNumber;
+    Read fnc = new Read();
+    public ViewReport(String tpNumber) {
         initComponents();
+        this.tpNumber = tpNumber;
+        tpnumTxt.setText(tpNumber);
+        
         ReportTb.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
             @Override
             public void valueChanged(ListSelectionEvent e){
@@ -27,10 +31,14 @@ public class ViewReport extends javax.swing.JFrame {
                     Object selectedValue = ReportTb.getValueAt(ReportTb.getSelectedRow(), 1);
                     jLabel1.setText(selectedValue.toString());
                     Object selectedPosition = ReportTb.getValueAt(ReportTb.getSelectedRow(), 2);
-                    jLabel2.setText(selectedPosition.toString());
+                    tpnumTxt.setText(selectedPosition.toString());
                 }
             }
         });
+    }
+
+    private ViewReport() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -44,8 +52,10 @@ public class ViewReport extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         ReportTb = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        tpnumTxt = new javax.swing.JLabel();
+        BackBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -64,36 +74,53 @@ public class ViewReport extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(ReportTb);
 
-        jLabel1.setText("jLabel1");
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel3.setText("TP Number:");
 
-        jLabel2.setText("jLabel2");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setText("Report List");
+
+        tpnumTxt.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        tpnumTxt.setText("tpnum");
+
+        BackBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        BackBtn.setText("Back");
+        BackBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(101, 101, 101)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BackBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 779, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(123, 123, 123)
                         .addComponent(jLabel1)
-                        .addGap(47, 47, 47)
-                        .addComponent(jLabel2)))
-                .addContainerGap(141, Short.MAX_VALUE))
+                        .addGap(61, 61, 61)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(tpnumTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 842, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addContainerGap(36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 674, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
+                    .addComponent(tpnumTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 597, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(BackBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
         );
 
         pack();
@@ -111,6 +138,13 @@ public class ViewReport extends javax.swing.JFrame {
         e.printStackTrace();
     }
     }//GEN-LAST:event_formWindowOpened
+
+    private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBtnActionPerformed
+        // TODO add your handling code here:
+        Lecturer LecturerInterface = new Lecturer();
+        LecturerInterface.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BackBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,9 +182,11 @@ public class ViewReport extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BackBtn;
     private javax.swing.JTable ReportTb;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel tpnumTxt;
     // End of variables declaration//GEN-END:variables
 }
