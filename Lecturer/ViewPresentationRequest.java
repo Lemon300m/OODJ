@@ -29,6 +29,7 @@ public class ViewPresentationRequest extends javax.swing.JFrame {
      * Creates new form ViewPresentationRequest
      */
     private String tpNumber;
+    PreprocessReport preprocessReport = new PreprocessReport();
     ReadRequest fnc = new ReadRequest();
     public ViewPresentationRequest(String tpNumber) {
         initComponents();
@@ -165,9 +166,11 @@ public class ViewPresentationRequest extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
     try {
-        String reportFilePath = "Report.txt";
+        String originalReportFilePath = "Report.txt";
+        String preprocessedReportFilePath = "Reports.txt";
+        preprocessReport.preprocessReportFile(originalReportFilePath, preprocessedReportFilePath);
         String presentationRequestFilePath = "Presentation Request.txt";
-        fnc.writeFilteredData(reportFilePath, presentationRequestFilePath, tpNumber, RequestTb);
+        fnc.writeFilteredData(preprocessedReportFilePath, presentationRequestFilePath, tpNumber, RequestTb);
     }catch (IOException e) {
         e.printStackTrace();
       }
