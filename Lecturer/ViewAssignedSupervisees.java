@@ -16,6 +16,7 @@ public class ViewAssignedSupervisees extends javax.swing.JFrame {
      */
     private String tpNumber;
     
+    PreprocessReport preprocessReport = new PreprocessReport();
     SearchRead fnc = new SearchRead();
     public ViewAssignedSupervisees(String tpNumber) {
        initComponents();
@@ -140,9 +141,10 @@ public class ViewAssignedSupervisees extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
          try {
-    String relativePath = "Report.txt"; // Replace with actual relative path if different
-    String filePath = fnc.getFileLocation(relativePath);
-    fnc.readTextFileToTable(filePath, assignedTb,tpNumber);
+            String originalReportFilePath = "Report.txt";
+        String preprocessedReportFilePath = "Reports.txt";
+        preprocessReport.preprocessReportFile(originalReportFilePath, preprocessedReportFilePath);        
+    fnc.readTextFileToTable(preprocessedReportFilePath, assignedTb,tpNumber);
     String tpNumber = tpnumTxt.getText(); 
 
     } catch (IOException e) {
