@@ -27,6 +27,7 @@ public class StudentMain extends javax.swing.JFrame {
      */
     public StudentMain() {
         initComponents();
+        studentTpTxt.setText(student.getTpNumber());
             
     }
     
