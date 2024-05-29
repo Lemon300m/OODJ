@@ -37,6 +37,7 @@ public class CheckFeedbackResult extends javax.swing.JFrame {
     public CheckFeedbackResult(String TpNumber,String Intake) {
         this.TpNumber = TpNumber;
         this.Intake = Intake;
+        RemarkTable.setDefaultEditor(Object.class, null);
         initComponents();
         try {
             BufferedReader br = new BufferedReader(new FileReader(Afile));
