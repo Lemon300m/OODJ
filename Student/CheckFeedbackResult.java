@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.student;
+package Total;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -28,16 +28,21 @@ public class CheckFeedbackResult extends javax.swing.JFrame {
     FileUtil rf = new FileUtil();
     File Rfile = new File(rf.getFileLocation(RemarkFile));
     StudentMain studentMain = new StudentMain();
-    private String TpNumber;
-    private String Intake;
+    
+    
 
     /**
      * Creates new form CheckFeedbackResult
+     * @param TpNumber
+     * @param Intake
      */
+    private String TpNumber;
+    private String Intake;
+    
     public CheckFeedbackResult(String TpNumber,String Intake) {
         this.TpNumber = TpNumber;
-        this.Intake = Intake;
-        RemarkTable.setDefaultEditor(Object.class, null);
+        this.Intake = Intake;   
+        
         initComponents();
         try {
             BufferedReader br = new BufferedReader(new FileReader(Afile));
@@ -83,25 +88,15 @@ public class CheckFeedbackResult extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         AssessmentForFbResult = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        RemarkTable = new javax.swing.JTable();
         CheckResultBtn = new javax.swing.JButton();
         BackBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        RemarkTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Assessment Selected:");
-
-        RemarkTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {" ", null, null, null}
-            },
-            new String [] {
-                "Name", "Feedback 1", "Feedback 2", "Result"
-            }
-        ));
-        jScrollPane1.setViewportView(RemarkTable);
 
         CheckResultBtn.setText("Check Feedback and Result");
         CheckResultBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -120,47 +115,59 @@ public class CheckFeedbackResult extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Check Feedback And Result");
 
+        RemarkTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"-", "-", "-", "-"}
+            },
+            new String [] {
+                "Assessment", "Remark 1", "Remark 2", "Result"
+            }
+        ));
+        jScrollPane2.setViewportView(RemarkTable);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(193, 193, 193)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CheckResultBtn)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(193, 193, 193)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CheckResultBtn)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(AssessmentForFbResult, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(BackBtn)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(AssessmentForFbResult, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(BackBtn)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(219, 219, 219))
+                .addContainerGap(128, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(140, 140, 140))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(75, 75, 75))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(11, 11, 11)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(AssessmentForFbResult, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(CheckResultBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BackBtn)
-                .addContainerGap())
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
@@ -196,6 +203,7 @@ public class CheckFeedbackResult extends javax.swing.JFrame {
             }
         if(!found){
              JOptionPane.showMessageDialog(null, "The selected report has not been submitted.", "Error", JOptionPane.ERROR_MESSAGE);
+             model.setValueAt("-",0,0);
              model.setValueAt("-",0,1);
              model.setValueAt("-",0,2);
              model.setValueAt("-",0,3);
@@ -220,7 +228,9 @@ public class CheckFeedbackResult extends javax.swing.JFrame {
 
     private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBtnActionPerformed
         // TODO add your handling code here:
-        studentMain.setVisible(true);
+        Student callBack = new Student(TpNumber,"",Intake);
+        StudentMain CallBack = new StudentMain(callBack);
+        CallBack.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BackBtnActionPerformed
 
@@ -266,6 +276,6 @@ public class CheckFeedbackResult extends javax.swing.JFrame {
     private javax.swing.JTable RemarkTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
